@@ -1,11 +1,11 @@
 import TwitchSchedule from '@/components/home/TwitchSchedule';
 import YouTubeShorts from '@/components/home/YouTubeShorts';
-import TwitterFeed from '@/components/home/TwitterFeed';
+import XFeed from '@/components/home/TwitterFeed';
 import LatestBlogPost from '@/components/home/LatestBlogPost';
 
 /**
  * TenVexAI Homepage
- * Displays welcome message, stream schedule, shorts, tweets, and latest blog post
+ * Displays welcome message, stream schedule, shorts, X posts, and latest blog post
  */
 export default function HomePage() {
   return (
@@ -28,8 +28,8 @@ export default function HomePage() {
       {/* YouTube Shorts */}
       <YouTubeShorts />
 
-      {/* Twitter Feed */}
-      <TwitterFeed />
+      {/* X Feed */}
+      <XFeed />
 
       {/* Latest Blog Post */}
       <LatestBlogPost />

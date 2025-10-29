@@ -1,15 +1,15 @@
 'use client';
 
-import { Twitter } from 'lucide-react';
+import { SiX } from 'react-icons/si';
 import Card, { CardHeader, CardContent } from '@/components/ui/Card';
 import { useEffect } from 'react';
 
 /**
- * Twitter/X feed component using embedded timeline
- * Uses Twitter's widget script for easy integration
+ * X feed component using embedded timeline
+ * Uses X's widget script for easy integration
  * No API key required
  */
-export default function TwitterFeed() {
+export default function XFeed() {
   useEffect(() => {
     // Load Twitter widget script
     const script = document.createElement('script');
@@ -27,12 +27,12 @@ export default function TwitterFeed() {
     <Card>
       <CardHeader>
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-blue-400/10 rounded-lg">
-            <Twitter className="text-blue-400" size={24} />
+          <div className="p-2 bg-black/30 rounded-lg">
+            <SiX className="text-white" size={24} />
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-text-primary">Latest Tweets</h2>
-            <p className="text-sm text-text-secondary">Follow along on X/Twitter</p>
+            <h2 className="text-2xl font-bold text-text-primary">Latest from X</h2>
+            <p className="text-sm text-text-secondary">Follow along on X</p>
           </div>
         </div>
       </CardHeader>
@@ -46,7 +46,7 @@ export default function TwitterFeed() {
             data-chrome="noheader nofooter noborders"
             href="https://twitter.com/tenvexai?ref_src=twsrc%5Etfw"
           >
-            Loading tweets...
+            Loading posts...
           </a>
         </div>
         <div className="mt-4 text-center">
@@ -56,7 +56,7 @@ export default function TwitterFeed() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-accent-purple hover:text-accent-cyan transition-colors font-semibold"
           >
-            Follow on Twitter/X →
+            Follow on X →
           </a>
         </div>
       </CardContent>

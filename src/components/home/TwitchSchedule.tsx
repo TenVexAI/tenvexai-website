@@ -1,4 +1,5 @@
-import { Calendar, Clock, Gamepad2 } from 'lucide-react';
+import { Clock, Gamepad2 } from 'lucide-react';
+import { SiTwitch } from 'react-icons/si';
 import Card, { CardHeader, CardContent } from '@/components/ui/Card';
 import { getTwitchSchedule } from '@/lib/api/twitch';
 
@@ -15,7 +16,7 @@ export default async function TwitchSchedule() {
       <CardHeader>
         <div className="flex items-center gap-3">
           <div className="p-2 bg-accent-purple/10 rounded-lg">
-            <Calendar className="text-accent-purple" size={24} />
+            <SiTwitch className="text-accent-purple" size={24} />
           </div>
           <div>
             <h2 className="text-2xl font-bold text-text-primary">Stream Schedule</h2>

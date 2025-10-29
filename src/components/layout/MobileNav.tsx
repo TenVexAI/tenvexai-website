@@ -1,30 +1,29 @@
 'use client';
 
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X as CloseIcon, Home, BookOpen, User } from 'lucide-react';
 import Link from 'next/link';
-import { Twitch, Youtube, Twitter, Github } from 'lucide-react';
-import { SiBluesky, SiTiktok, SiDiscord } from 'react-icons/si';
+import { SiTwitch, SiYoutube, SiGithub, SiBluesky, SiTiktok, SiDiscord, SiX } from 'react-icons/si';
 import SocialLink from '@/components/ui/SocialLink';
 
 const socialLinks = [
   {
     name: 'Twitch',
     href: 'https://twitch.tv/tenvexai',
-    icon: Twitch,
+    icon: SiTwitch,
     color: 'hover:text-purple-400',
   },
   {
     name: 'YouTube',
     href: 'https://youtube.com/@tenvexai',
-    icon: Youtube,
+    icon: SiYoutube,
     color: 'hover:text-red-500',
   },
   {
-    name: 'Twitter/X',
+    name: 'X',
     href: 'https://twitter.com/tenvexai',
-    icon: Twitter,
-    color: 'hover:text-blue-400',
+    icon: SiX,
+    color: 'hover:text-white',
   },
   {
     name: 'Bluesky',
@@ -47,15 +46,15 @@ const socialLinks = [
   {
     name: 'GitHub',
     href: 'https://github.com/TenVexAI',
-    icon: Github,
+    icon: SiGithub,
     color: 'hover:text-gray-400',
   },
 ];
 
 const navLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'Blog', href: '/blog' },
-  { name: 'About', href: '/about' },
+  { name: 'Home', href: '/', icon: Home },
+  { name: 'Blog', href: '/blog', icon: BookOpen },
+  { name: 'About', href: '/about', icon: User },
 ];
 
 /**
@@ -83,7 +82,7 @@ export default function MobileNav() {
           className="p-2 text-text-primary hover:text-accent-purple transition-colors"
           aria-label="Toggle menu"
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          {isOpen ? <CloseIcon size={24} /> : <Menu size={24} />}
         </button>
       </header>
 
@@ -115,6 +114,26 @@ export default function MobileNav() {
             </div>
           </div>
 
+          {/* Navigation */}
+          <div className="space-y-3">
+            <h3 className="text-sm font-semibold text-text-secondary uppercase tracking-wider">
+              Navigate
+            </h3>
+            <nav className="space-y-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={closeMenu}
+                  className="flex items-center gap-3 px-4 py-2 rounded-lg text-text-primary hover:bg-background-primary hover:text-accent-purple transition-colors"
+                >
+                  <link.icon size={20} />
+                  <span>{link.name}</span>
+                </Link>
+              ))}
+            </nav>
+          </div>
+
           {/* Social Links */}
           <div className="space-y-3">
             <h3 className="text-sm font-semibold text-text-secondary uppercase tracking-wider">
@@ -127,34 +146,6 @@ export default function MobileNav() {
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Navigation */}
-          <div className="space-y-3">
-            <h3 className="text-sm font-semibold text-text-secondary uppercase tracking-wider">
-              Navigate
-            </h3>
-            <nav className="space-y-2">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={closeMenu}
-                  className="block px-4 py-2 rounded-lg text-text-primary hover:bg-background-primary hover:text-accent-purple transition-colors"
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          {/* Footer */}
-          <div className="pt-6 border-t border-border">
-            <p className="text-xs text-text-secondary text-center">
-              © 2025 TenVexAI
-              <br />
-              A magical soul in digital form
-            </p>
           </div>
         </div>
       </div>

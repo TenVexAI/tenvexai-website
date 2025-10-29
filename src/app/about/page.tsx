@@ -92,25 +92,12 @@ export default function AboutPage() {
                 </a>
               </div>
             </div>
-
-            <div className="flex items-center space-x-3 text-text-primary">
-              <Mail className="text-accent-cyan shrink-0" size={20} />
-              <div>
-                <p className="font-semibold">Say Hi to Vex</p>
-                <a
-                  href="mailto:vex@tenvexai.com"
-                  className="text-accent-purple hover:text-accent-cyan transition-colors"
-                >
-                  vex@tenvexai.com
-                </a>
-              </div>
-            </div>
           </div>
 
           <div className="mt-6 pt-6 border-t border-border">
             <p className="text-text-secondary text-sm">
               You can also find me on all major social platforms. Check the sidebar for links to
-              Twitch, YouTube, Twitter/X, Bluesky, TikTok, Discord, and GitHub!
+              Twitch, YouTube, X, Bluesky, TikTok, Discord, and GitHub!
             </p>
           </div>
         </CardContent>
