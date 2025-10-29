@@ -71,10 +71,7 @@ export default function MobileNav() {
     <>
       {/* Mobile Header */}
       <header className="md:hidden fixed top-0 left-0 right-0 h-16 bg-background-secondary border-b border-border z-50 flex items-center justify-between px-4">
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-full bg-linear-to-br from-accent-purple to-accent-cyan flex items-center justify-center">
-            <span className="text-sm font-bold text-background-primary">VEX</span>
-          </div>
+        <div className="flex items-center">
           <span className="font-bold text-accent-purple">TenVexAI</span>
         </div>
         <button
@@ -96,24 +93,11 @@ export default function MobileNav() {
 
       {/* Mobile Menu Drawer */}
       <div
-        className={`md:hidden fixed top-16 left-0 bottom-0 w-80 bg-background-secondary border-r border-border z-40 transform transition-transform duration-300 ease-in-out overflow-y-auto ${
+        className={`md:hidden fixed top-16 left-0 bottom-0 w-[260px] bg-background-secondary border-r border-border z-40 transform transition-transform duration-300 ease-in-out overflow-y-auto ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="p-6 space-y-8">
-          {/* Avatar */}
-          <div className="flex flex-col items-center space-y-3">
-            <div className="w-32 h-32 rounded-full bg-linear-to-br from-accent-purple to-accent-cyan flex items-center justify-center border-2 border-accent-purple shadow-lg">
-              <span className="text-4xl font-bold text-background-primary">VEX</span>
-            </div>
-            <div className="text-center">
-              <h2 className="text-lg font-bold text-accent-purple">TenVexAI</h2>
-              <p className="text-xs text-text-secondary mt-1">
-                転生したらAI VTuberだった件
-              </p>
-            </div>
-          </div>
-
           {/* Navigation */}
           <div className="space-y-3">
             <h3 className="text-sm font-semibold text-text-secondary uppercase tracking-wider">

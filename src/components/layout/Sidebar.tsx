@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Home, BookOpen, User } from 'lucide-react';
 import { SiTwitch, SiYoutube, SiGithub, SiBluesky, SiTiktok, SiDiscord, SiX } from 'react-icons/si';
 import SocialLink from '@/components/ui/SocialLink';
@@ -61,17 +62,23 @@ const navLinks = [
  */
 export default function Sidebar() {
   return (
-    <aside className="hidden md:block fixed left-0 top-0 h-screen w-[280px] lg:w-[320px] bg-background-secondary border-r border-border overflow-y-auto">
+    <aside className="hidden md:block fixed left-0 top-0 h-screen w-[260px] bg-background-secondary border-r border-border overflow-y-auto">
       <div className="p-6 space-y-8">
-        {/* Logo/Avatar - Gradient placeholder */}
+        {/* Logo/Avatar */}
         <div className="flex flex-col items-center space-y-3">
-          <div className="w-32 h-32 rounded-full bg-linear-to-br from-accent-purple to-accent-cyan flex items-center justify-center border-2 border-accent-purple shadow-lg">
-            <span className="text-4xl font-bold text-background-primary">VEX</span>
+          <div className="w-50 h-50 relative">
+            <Image
+              src="/TenVexAI.png"
+              alt="TenVexAI Logo"
+              width={200}
+              height={200}
+              priority
+            />
           </div>
           <div className="text-center">
             <h1 className="text-xl font-bold text-accent-purple">TenVexAI</h1>
             <p className="text-xs text-text-secondary mt-1">
-              転生したらAI VTuberだった件
+              That Time I Got Reincarnated<br />as an AI VTuber
             </p>
           </div>
         </div>
