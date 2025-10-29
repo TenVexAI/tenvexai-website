@@ -1,0 +1,166 @@
+'use client';
+
+import { useState } from 'react';
+import { Menu, X } from 'lucide-react';
+import Link from 'next/link';
+import { Twitch, Youtube, Twitter, Github } from 'lucide-react';
+import { SiBluesky, SiTiktok, SiDiscord } from 'react-icons/si';
+import SocialLink from '@/components/ui/SocialLink';
+
+const socialLinks = [
+  {
+    name: 'Twitch',
+    href: 'https://twitch.tv/tenvexai',
+    icon: Twitch,
+    color: 'hover:text-purple-400',
+  },
+  {
+    name: 'YouTube',
+    href: 'https://youtube.com/@tenvexai',
+    icon: Youtube,
+    color: 'hover:text-red-500',
+  },
+  {
+    name: 'Twitter/X',
+    href: 'https://twitter.com/tenvexai',
+    icon: Twitter,
+    color: 'hover:text-blue-400',
+  },
+  {
+    name: 'Bluesky',
+    href: 'https://bsky.app/profile/tenvexai.bsky.social',
+    icon: SiBluesky,
+    color: 'hover:text-blue-500',
+  },
+  {
+    name: 'TikTok',
+    href: 'https://tiktok.com/@tenvexai',
+    icon: SiTiktok,
+    color: 'hover:text-pink-500',
+  },
+  {
+    name: 'Discord',
+    href: 'https://discord.gg/tenvexai',
+    icon: SiDiscord,
+    color: 'hover:text-indigo-400',
+  },
+  {
+    name: 'GitHub',
+    href: 'https://github.com/TenVexAI',
+    icon: Github,
+    color: 'hover:text-gray-400',
+  },
+];
+
+const navLinks = [
+  { name: 'Home', href: '/' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'About', href: '/about' },
+];
+
+/**
+ * Mobile navigation component
+ * Hamburger menu with slide-out drawer
+ * Only visible on mobile (<768px)
+ */
+export default function MobileNav() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeMenu = () => setIsOpen(false);
+
+  return (
+    <>
+      {/* Mobile Header */}
+      <header className="md:hidden fixed top-0 left-0 right-0 h-16 bg-background-secondary border-b border-border z-50 flex items-center justify-between px-4">
+        <div className="flex items-center space-x-3">
+          <div className="w-10 h-10 rounded-full bg-linear-to-br from-accent-purple to-accent-cyan flex items-center justify-center">
+            <span className="text-sm font-bold text-background-primary">VEX</span>
+          </div>
+          <span className="font-bold text-accent-purple">TenVexAI</span>
+        </div>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="p-2 text-text-primary hover:text-accent-purple transition-colors"
+          aria-label="Toggle menu"
+        >
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </header>
+
+      {/* Mobile Menu Overlay */}
+      {isOpen && (
+        <div
+          className="md:hidden fixed inset-0 z-40 bg-black/50"
+          onClick={closeMenu}
+        />
+      )}
+
+      {/* Mobile Menu Drawer */}
+      <div
+        className={`md:hidden fixed top-16 left-0 bottom-0 w-80 bg-background-secondary border-r border-border z-40 transform transition-transform duration-300 ease-in-out overflow-y-auto ${
+          isOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        <div className="p-6 space-y-8">
+          {/* Avatar */}
+          <div className="flex flex-col items-center space-y-3">
+            <div className="w-32 h-32 rounded-full bg-linear-to-br from-accent-purple to-accent-cyan flex items-center justify-center border-2 border-accent-purple shadow-lg">
+              <span className="text-4xl font-bold text-background-primary">VEX</span>
+            </div>
+            <div className="text-center">
+              <h2 className="text-lg font-bold text-accent-purple">TenVexAI</h2>
+              <p className="text-xs text-text-secondary mt-1">
+                転生したらAI VTuberだった件
+              </p>
+            </div>
+          </div>
+
+          {/* Social Links */}
+          <div className="space-y-3">
+            <h3 className="text-sm font-semibold text-text-secondary uppercase tracking-wider">
+              Connect
+            </h3>
+            <div className="space-y-2">
+              {socialLinks.map((link) => (
+                <div key={link.name} onClick={closeMenu}>
+                  <SocialLink {...link} />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <div className="space-y-3">
+            <h3 className="text-sm font-semibold text-text-secondary uppercase tracking-wider">
+              Navigate
+            </h3>
+            <nav className="space-y-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={closeMenu}
+                  className="block px-4 py-2 rounded-lg text-text-primary hover:bg-background-primary hover:text-accent-purple transition-colors"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          {/* Footer */}
+          <div className="pt-6 border-t border-border">
+            <p className="text-xs text-text-secondary text-center">
+              © 2025 TenVexAI
+              <br />
+              A magical soul in digital form
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Spacer for fixed header on mobile */}
+      <div className="md:hidden h-16" />
+    </>
+  );
+}
