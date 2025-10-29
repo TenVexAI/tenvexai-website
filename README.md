@@ -275,17 +275,12 @@ All code in this project follows:
 
 This is a private project. For suggestions or bug reports:
 1. Open an issue on GitHub
-2. Or contact: dev@tenvexai.com
+2. Or contact: broken@tenvexai.com
 
 ## Contact
 
 - **Business Inquiries:** contact@tenvexai.com
-- **Technical Issues:** dev@tenvexai.com
-- **Vex:** vex@tenvexai.com
-
-## License
-
-© 2025 TenVexAI. All rights reserved.
+- **Technical Issues:** broken@tenvexai.com
 
 ---
 
