@@ -21,35 +21,55 @@ Official website for TenVexAI - That Time I Got Reincarnated as an AI VTuber (�
 
 ### Automatic Deployment (CI/CD)
 
+**Status:** ✅ Production Ready
+
 The site automatically deploys to Spaceship.com cPanel when you push to the `main` branch:
 
 1. **Push to GitHub**: `git push origin main`
-2. **GitHub Actions**: Automatically builds and deploys
-3. **Live**: Changes appear on tenvexai.com within minutes
+2. **GitHub Actions**: Automatically builds and deploys via FTP
+3. **Live**: Changes appear on https://tenvexai.com within 2-5 minutes
 
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for full setup instructions.
+**Deployment Pipeline:**
+- ✅ Automated builds with Next.js
+- ✅ Environment variables from GitHub Secrets
+- ✅ FTP deployment to cPanel
+- ✅ Node.js 20 LTS runtime
+- ✅ Incremental deployments (only changed files)
+
+**Guides:**
+- [BLOG_GUIDE.md](./BLOG_GUIDE.md) - Adding blog posts
+
+### Adding Blog Posts (Auto-Deploy)
+
+Blog posts automatically deploy when pushed to `main`:
+
+```bash
+# 1. Create post
+touch src/content/blog/my-post.mdx
+
+# 2. Add content with frontmatter
+# 3. Commit and push
+git add src/content/blog/my-post.mdx
+git commit -m "Add new blog post: My Title"
+git push origin main
+
+# 4. Live in ~2 minutes! 🚀
+```
 
 ## Features
 
-✅ **Completed:**
-- Modern dark theme with purple/cyan accent colors
+✅ **Production Ready:**
 - Responsive design (mobile, tablet, desktop)
-- Fixed sidebar navigation with social links
-- Mobile hamburger menu
 - Blog system with MDX support
-- LaTeX math rendering
-- Code syntax highlighting
+- LaTeX math rendering with MathJax
+- Code syntax highlighting (Shiki)
 - Giscus comments integration
-- Twitch schedule display (mock data)
-- YouTube shorts preview (mock data)
+- **Twitch API integration** - Live schedule from Twitch Helix API
+- **YouTube API integration** - Real shorts from YouTube Data API v3
 - Twitter/X feed embed
-- About page
+- **CI/CD Pipeline** - Automated deployment via GitHub Actions
+- **Production Deployment** - Live on Spaceship.com cPanel
 
-🚧 **To-Do:**
-- Twitch API integration for real schedule
-- YouTube API integration for real shorts
-- Additional blog posts
-- Image assets and optimization
 
 ## Getting Started
 
@@ -116,41 +136,66 @@ NEXT_PUBLIC_GISCUS_CATEGORY_ID=DIC_xxxxxxxxxxxxx
 NEXT_PUBLIC_SITE_URL=https://tenvexai.com
 ```
 
-### Optional Variables (for API integrations)
+### API Integration Variables
 
 #### Twitch API
-**Status:** 🚧 TODO - Not yet implemented
+**Status:** ✅ Fully Integrated
 
-To enable Twitch schedule integration:
+Displays your live Twitch stream schedule from the Twitch Helix API:
+
 1. Go to https://dev.twitch.tv/console
-2. Register a new application
-3. Get your Client ID and Secret
+2. Register a new application:
+   - **Name:** TenVexAI Website
+   - **OAuth Redirect URLs:** `https://tenvexai.com/api/auth/callback`
+   - **Category:** Website Integration
+   - **Client Type:** Confidential
+3. Get your Client ID and generate a Client Secret
 4. Add to `.env.local`:
 
 ```env
 TWITCH_CLIENT_ID=your_client_id_here
 TWITCH_CLIENT_SECRET=your_client_secret_here
-TWITCH_CHANNEL=tenvexai
+TWITCH_CHANNEL_ID=tenvexai
 ```
 
-#### YouTube API
-**Status:** 🚧 TODO - Not yet implemented
+**Features:**
+- Fetches real schedule from Twitch
+- Shows next 7 days of streams
+- Auto-updates every 5 minutes
+- Graceful fallback to mock data if API fails
 
-To enable YouTube shorts preview:
+#### YouTube API
+**Status:** ✅ Fully Integrated
+
+Displays your latest YouTube Shorts:
+
 1. Go to https://console.cloud.google.com
 2. Create a project and enable YouTube Data API v3
 3. Create credentials (API Key)
-4. Add to `.env.local`:
+4. **Important:** Set API restrictions:
+   - **Application restrictions:** None (server-side calls)
+   - **API restrictions:** YouTube Data API v3 only
+5. Add to `.env.local`:
 
 ```env
 YOUTUBE_API_KEY=your_api_key_here
-YOUTUBE_CHANNEL_ID=your_channel_id_here
+YOUTUBE_CHANNEL_ID=@TenVexAI
 ```
 
-#### Twitter/X
-**Status:** ✅ Using embeds (no API needed)
+**Features:**
+- Fetches latest shorts (videos under 60 seconds)
+- Auto-filters by duration
+- Updates every 5 minutes
+- Shows up to 6 most recent shorts
 
-Twitter feed currently uses embedded widgets which don't require API keys.
+#### Twitter/X
+**Status:** ✅ Using Embedded Timeline
+
+Twitter feed uses embedded widgets (no API key needed):
+
+```env
+TWITTER_USERNAME=tenvexai
+```
 
 ## Adding Blog Posts
 
@@ -261,18 +306,18 @@ src/
 The site uses a consistent dark theme with purple and cyan accents:
 
 - **Primary Background:** `#141414`
-- **Secondary Background:** `#414141`
+- **Secondary Background:** `#313131`
 - **Accent Purple:** `#a287f4` (primary accent)
 - **Accent Cyan:** `#12e6c8` (secondary accent)
 - **Text Primary:** `#e0e0e0`
 - **Text Secondary:** `#a0a0a0`
-- **Border:** `#2a2a3e`
+- **Border:** `#2a5a5e`
 
 ## Responsive Design
 
-- **Desktop (≥1024px):** Fixed sidebar (320px), full content area
-- **Tablet (768px-1023px):** Fixed sidebar (280px), adjusted content
-- **Mobile (<768px):** Hamburger menu, full-width content
+- **Desktop (≥768px):** Fixed sidebar (260px), full content area
+- **Mobile (<768px):** Hamburger menu with slide-out drawer, full-width content
+- **Consistent spacing:** 260px sidebar width across all breakpoints
 
 ## Code Quality Standards
 
@@ -283,6 +328,29 @@ All code in this project follows:
 - ✅ **Type-safe:** Proper TypeScript usage
 - ✅ **Performant:** Optimized images and lazy loading
 
+## Development Workflow
+
+### Branch Strategy
+
+- **`main`** - Production branch (auto-deploys to tenvexai.com)
+- **`dev`** - Development branch (for testing before deployment)
+
+### Making Changes
+
+```bash
+# Work on dev branch
+git checkout dev
+# Make changes...
+git add .
+git commit -m "feat: add new feature"
+git push origin dev
+
+# When ready to deploy
+git checkout main
+git merge dev
+git push origin main  # Triggers deployment
+```
+
 ## Contributing
 
 This is a private project. For suggestions or bug reports:
@@ -291,9 +359,9 @@ This is a private project. For suggestions or bug reports:
 
 ## Contact
 
-- **Business Inquiries:** contact@tenvexai.com
+- **Website:** https://tenvexai.com
+- **Twitch:** https://twitch.tv/tenvexai
+- **YouTube:** https://youtube.com/@TenVexAI
+- **Twitter/X:** https://x.com/tenvexai
+- **GitHub:** https://github.com/TenVexAI
 - **Technical Issues:** broken@tenvexai.com
-
----
-
-Built with 💜 by Vex - A magical soul in digital form
