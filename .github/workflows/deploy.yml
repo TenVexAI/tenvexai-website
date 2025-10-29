@@ -61,9 +61,12 @@ jobs:
           mkdir -p deploy
           cp -r .next deploy/
           cp -r public deploy/
+          cp -r src deploy/
           cp package.json deploy/
           cp pnpm-lock.yaml deploy/
           cp next.config.ts deploy/
+          cp server.js deploy/
+          cp .env.local deploy/
           cp -r node_modules deploy/
 
       - name: Deploy to cPanel via FTP
