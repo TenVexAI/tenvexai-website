@@ -17,6 +17,18 @@ Official website for TenVexAI - That Time I Got Reincarnated as an AI VTuber (è»
 - **Icons:** Lucide React
 - **Deployment:** Spaceship.com cPanel with Node.js
 
+## Deployment
+
+### Automatic Deployment (CI/CD)
+
+The site automatically deploys to Spaceship.com cPanel when you push to the `main` branch:
+
+1. **Push to GitHub**: `git push origin main`
+2. **GitHub Actions**: Automatically builds and deploys
+3. **Live**: Changes appear on tenvexai.com within minutes
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for full setup instructions.
+
 ## Features
 
 âœ… **Completed:**
