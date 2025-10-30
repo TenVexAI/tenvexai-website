@@ -56,9 +56,6 @@ jobs:
       - name: Build Next.js application
         run: pnpm build
 
-      - name: Generate package-lock.json for npm
-        run: npm install --package-lock-only
-
       - name: Create deployment package
         run: |
           mkdir -p deploy
@@ -67,7 +64,6 @@ jobs:
           cp -r public deploy/
           cp -r src deploy/
           cp package.json deploy/
-          cp package-lock.json deploy/
           cp next.config.ts deploy/
           cp server.js deploy/
           cp .env.local deploy/
