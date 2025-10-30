@@ -1,11 +1,11 @@
-import type { NextConfig } from "next";
-import createMDX from '@next/mdx';
-import remarkMath from 'remark-math';
-import remarkGfm from 'remark-gfm';
-import rehypeMathJax from 'rehype-mathjax';
-import rehypeHighlight from 'rehype-highlight';
+const createMDX = require('@next/mdx');
+const remarkMath = require('remark-math');
+const remarkGfm = require('remark-gfm');
+const rehypeMathJax = require('rehype-mathjax');
+const rehypeHighlight = require('rehype-highlight');
 
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   reactCompiler: true,
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   images: {
@@ -33,4 +33,4 @@ const withMDX = createMDX({
   },
 });
 
-export default withMDX(nextConfig);
+module.exports = withMDX(nextConfig);
